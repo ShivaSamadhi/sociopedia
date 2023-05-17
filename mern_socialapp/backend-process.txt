@@ -1,0 +1,128 @@
+SERVER SIDE
+
+Create Server Directory
+
+1. "npm i -g nodemon"
+    -Install globally for live server updating
+
+2. Install all necessary dependencies ('npm i ...') for the project
+    -This project includes:
+
+    -express:
+        Node.js framework used in server-side development to create/manage servers, and also to handle requests, routing, etc
+
+    -body-parser:
+        Middleware that allows for the parsing of HTTP req bodies into JS objs before they are passed to their intended controller. This allows the data encoded in each req to be accessible
+
+    -mongoose:
+        ODM library for MongoDB that allows for the enforcement of specific schemas at the application level. Define a Schema object in your application code that maps to a collection in your MongoDB database. The Schema object defines the structure of the documents in your collection. Then, you need to create a Model object out of the schema. The model is used to interact with the collection.
+
+    -cors:
+        CORS stands for Cross-Origin Resource Sharing . It allows us to relax the security applied to an API. This is done by bypassing the Access-Control-Allow-Origin headers, which specify which origins can access the API.
+
+    -dotenv:
+        Loads environment variables from .env file
+
+    multer:
+        Middleware for handling multipart/form-data, which is primarily used for uploading files from the frontend to the API
+
+    -helmet:
+         Helps to protect Express apps from common security threats such as Cross-Site Scripting (XSS) and click-jacking attacks. Helmet is particularly useful because Express applications do not come with security HTTP headers out of the box.
+
+    -morgan:
+        Middleware to log HTTP requests and errors, and simplifies the process.
+
+    gridfs-stream:
+        Large file upload to MongoDB collection
+
+    multer-gridfs-storage:
+
+    jsonwebtoken:
+        JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
+            -AUTHORIZATION
+            -INFORMATION EXCHANGE
+
+3. 'npm init' to create package.json
+    -add "type":"module" to file (access to import syntax)
+
+4. Create index.js/App.js
+
+CONFIGURING API
+
+1. Import necessary pkgs to index.js
+    express
+    bodyParser
+    mongoose
+    cors
+    dotenv
+    multer
+    helmet
+    morgan
+    path
+    fileURLToPath
+
+2. Configurations for pkgs
+    -File Paths
+
+    -Dotenv
+
+    -Express App
+
+3. Setup middleware
+    -Express JSON
+    -Helmet
+    -Helmet CORS
+    -Morgan
+    -BodyParser
+        JSON
+        urlencoded
+    -CORS
+    -Static Files
+
+4. Configure Multer Storage
+    -Storage obj
+    -Upload obj
+
+5. Routes w/ file upload
+    -These routes cannot be created in a separate routing file
+
+6. General routes setup
+    -Routes directory (based on models)
+
+7. Connect MongoDB
+    -Create .env -> MONGO_URL / PORT setup
+    -Database directory -> database.js
+    -Import mongoose & dotenv -> export connectDB()
+    -Import connectDB -> app.listen() setup
+
+DATA DESIGN
+
+1. Organize structure data models
+
+2. Create a Models directory
+
+3. Build out all necessary data models
+    -Import mongoose
+    -Create new schema (new mongoose.Schema({}, {timestamp: true}) )
+        -Use "<keyName>: {}" to add parameters to each key-value like type, require, min, max, etc
+
+    -Create new model (mongoose.model(<ModelName>, <SchemaName>)
+
+    -Export model
+
+CONTROLLERS
+1. Controllers directory
+
+2. Build controllers (based on routes)
+
+AUTH/SECURITY
+
+1. Setup register route (w/ file upload)
+
+2. Create auth controller functions
+   -Import bcrypt, jwt, UserModel
+   - async register() / login()
+    -register() -> destructure register form from req.body -> salt & hash password
+   -Create new user based on form data & bcrypt pw
+   -save user
+   -res.status.json
