@@ -8,7 +8,8 @@ import {
     MenuItem,
     FormControl,
     useTheme,
-    useMediaQuery, Icon
+    useMediaQuery,
+    Icon
 } from "@mui/material";
 import {
     Search,
@@ -35,7 +36,7 @@ const Navbar = () => {
     const theme = useTheme()
     const neutralLight = theme.palette.neutral.light
     const dark = theme.palette.neutral.dark
-    const background = theme.palette.background.light
+    const background = theme.palette.background.default
     const primaryLight = theme.palette.primary.light
     const alt = theme.palette.background.alt
 
@@ -130,12 +131,12 @@ const Navbar = () => {
                 <Box
                     position="fixed"
                     right="0"
-                    bottom="0"
+                    top="0"
                     height="100%"
                     zIndex="10"
                     maxWidth="500px"
                     minWidth="300px"
-                    backgroundColor={background}
+                    backgroundColor={alt}
                 >
                     {/*Close Icon*/}
                     <Box

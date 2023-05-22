@@ -2,9 +2,11 @@ import {Box} from "@mui/material";
 import Navbar from "../navbar/navbar";
 
 const LoginPage = () => {
-    return (<Box>
+    return (
+    <Box>
         <Navbar/>
-    </Box>)
+    </Box>
+    )
 }
 
 export default LoginPage
