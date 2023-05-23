@@ -12,6 +12,7 @@ const LoginPage = () => {
 
     return (
     <Box>
+        {/*Page Header*/}
         <Box
             width="100%"
             backgroundColor={theme.palette.background.alt}
@@ -26,7 +27,9 @@ const LoginPage = () => {
                 Sociopedia
             </Typography>
         </Box>
+        {/*Page Header*/}
 
+        {/*Form Div*/}
         <Box
             width={isNonMobileScreen ? "50%" : "93%"}
             p="2rem"
@@ -44,8 +47,10 @@ const LoginPage = () => {
             >
                 Welcome to Sociopedia
             </Typography>
+
             <Form/>
         </Box>
+        {/*Form Div*/}
     </Box>
     )
 }

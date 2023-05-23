@@ -186,6 +186,8 @@ const Form = () => {
                                     helperText={touched.occupation && errors.occupation}
                                     sx={{gridColumn: "span 4"}}
                                 />
+
+                                {/*Dropzone File Div*/}
                                 <Box
                                     gridColumn="span 4"
                                     border={`1px solid ${palette.neutral.medium}`}
@@ -220,7 +222,7 @@ const Form = () => {
                                         )}
                                     </Dropzone>
                                 </Box>
-
+                                {/*Dropzone File Div*/}
                             </>
                         )}
                         {/*Registration Form*/}
