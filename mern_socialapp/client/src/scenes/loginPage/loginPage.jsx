@@ -37,10 +37,14 @@ const LoginPage = () => {
             <Typography
                 fontWeight="500"
                 variant="h5"
-                sx={{ mb: "1.5rem"}}
+                sx={{
+                    mb: "1.5rem",
+                    textAlign: "center"
+                }}
             >
                 Welcome to Sociopedia
             </Typography>
+            <Form/>
         </Box>
     </Box>
     )

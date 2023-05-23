@@ -59,6 +59,56 @@ const Form = () => {
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
+  const login = async (values, onSubmitProps) => {
+
+      const loginUserRes = await fetch(
+          "http://localhost:3795/auth/login",
+          {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify(values)
+          }
+      )
+
+      const loginUser = await loginUserRes.json()
+      onSubmitProps.resetForm()
+
+      if (loginUser){
+          dispatch(
+             setLogin({
+                 user: loginUser.user,
+                 token: loginUser.token
+             })
+          )
+      }
+
+      navigate("/home")
+  }
+
+  const register = async (values, onSubmitProps) => {
+      //Syntax specifically for sending form data w/ image
+      const formData = new FormData()
+
+      for (const value in values) {
+          formData.append(value, values[value])
+      }
+      formData.append("picturePath", values.picture.name)
+
+      const registerUserRes = await fetch(
+          "http://localhost:3795/auth/register",
+          {
+              method: "POST",
+              body: formData
+          }
+      )
+
+      const registerUser = await registerUserRes.json()
+
+      onSubmitProps.resetForm()
+
+      if (registerUser){setPageType("login")}
+    }
+
   const handleFormSubmit = async (values, onSubmitProps) => {
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps)
