@@ -60,7 +60,8 @@ const Form = () => {
   const isRegister = pageType === "register";
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-
+    if (isLogin) await login(values, onSubmitProps);
+    if (isRegister) await register(values, onSubmitProps)
   }
 
   return (
@@ -81,6 +82,8 @@ const Form = () => {
               resetForm,
               }) => (
                   <form onSubmit={handleSubmit}>
+
+                    {/*Main Form Div*/}
                     <Box
                         display="grid"
                         gap="30px"
@@ -89,6 +92,8 @@ const Form = () => {
                             "& > div": {gridColumn: isNonMobileScreen ? undefined : "span 4"}
                         }}
                     >
+
+                        {/*Registration Form*/}
                         {isRegister && (
                             <>
                                 <TextField
@@ -163,45 +168,76 @@ const Form = () => {
                                                 )}
                                             </Box>
                                         )}
-
                                     </Dropzone>
                                 </Box>
-                                <TextField
-                                    label="Email"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.email}
-                                    name="email"
-                                    error={Boolean(touched.email) && Boolean(errors.email)}
-                                    helperText={touched.email && errors.email}
-                                    sx={{gridColumn: "span 4"}}
-                                />
-                                <TextField
-                                    label="Email"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.email}
-                                    name="email"
-                                    error={Boolean(touched.email) && Boolean(errors.email)}
-                                    helperText={touched.email && errors.email}
-                                    sx={{gridColumn: "span 4"}}
-                                />
-                                <TextField
-                                    label="Password"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.password}
-                                    name="password"
-                                    error={Boolean(touched.password) && Boolean(errors.password)}
-                                    helperText={touched.password && errors.password}
-                                    sx={{gridColumn: "span 4"}}
-                                />
+
                             </>
                         )}
+                        {/*Registration Form*/}
+
+                        {/*Login Form*/}
+                        <TextField
+                        label="Email"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.email}
+                        name="email"
+                        error={Boolean(touched.email) && Boolean(errors.email)}
+                        helperText={touched.email && errors.email}
+                        sx={{gridColumn: "span 4"}}
+                        />
+                        <TextField
+                            label="Password"
+                            type="password"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.password}
+                            name="password"
+                            error={Boolean(touched.password) && Boolean(errors.password)}
+                            helperText={touched.password && errors.password}
+                            sx={{gridColumn: "span 4"}}
+                        />
+                        {/*Login Form*/}
+
                     </Box>
+                    {/*Main Form Div*/}
+
+                    {/*Form Type Div*/}
+                    <Box>
+                      <Button
+                        fullWidth
+                        type="submit"
+                        sx={{
+                            m: "2rem 0",
+                            p: "1rem",
+                            backgroundColor: palette.primary.main,
+                            color: palette.background.alt,
+                            "&:hover": {color: palette.primary.main}
+                        }}
+                      >
+                          {isLogin ? "Login" : "Register"}
+                      </Button>
+                      <Typography
+                        onClick={()=>{
+                            setPageType(isLogin ? "register" : "login")
+                            resetForm()
+                        }}
+                        sx={{
+                            textDecoration: "underline",
+                            color: palette.primary.main,
+                            "&:hover" : {
+                                cursor: "pointer",
+                                color: palette.primary.light
+                            }
+                        }}
+                      >
+                          {isLogin ? "Don't Have An Account? Sign Up Here" : "Have An Account Already? Login Here"}
+                      </Typography>
+                    </Box>
+                    {/*Form Type Buttons*/}
+
                   </form>
-              )
-          }
+              )}
       </Formik>
   )
 }
