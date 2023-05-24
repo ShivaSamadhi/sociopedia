@@ -13,7 +13,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import {Formik} from "formik";
 import * as yup from "yup"
 import Dropzone from "react-dropzone";
-import {setLogin} from "state/state";
+import state, {setLogin} from "state/state";
 import FlexBetween from "components/FlexBetween";
 
 //Validation Schemas
@@ -81,7 +81,8 @@ const Form = () => {
              })
           )
       }
-
+      const {password, ...user} = loginUser.user
+      console.log(ini.user)
       navigate("/home")
   }
 
