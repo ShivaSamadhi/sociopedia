@@ -104,7 +104,7 @@ export const updatePassword = async (req, res) =>{
             (err, model) => {
                 if(err)
                     console.log(err)
-
+                console.log(`Updated User: ${model}`)
             }
             )
     }
