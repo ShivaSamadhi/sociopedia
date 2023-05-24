@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan"
-
+import mongoose from "mongoose";
 import path from "path";
 import {fileURLToPath} from "url"
 import {connectDB} from "./database/database.js";
@@ -16,7 +16,9 @@ import postRoutes from "./routes/PostRoutes.js"
 import { register } from "./controllers/AuthController.js"
 import { createPost } from "./controllers/PostController.js"
 import { verifyToken } from "./middleware/AuthMiddleware.js";
-
+import UserModel from "./models/UserModel.js";
+import PostModel from "./models/PostModel.js";
+import {users, posts} from "./data/data.js";
 
 //CONFIG
 const __filename = fileURLToPath(import.meta.url)
