@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 import {
     Box,
     Button,
@@ -10,10 +12,8 @@ import {
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import {Formik} from "formik";
 import * as yup from "yup"
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setLogin} from "state/state";
 import Dropzone from "react-dropzone";
+import {setLogin} from "state/state";
 import FlexBetween from "components/FlexBetween";
 
 //Validation Schemas
@@ -56,8 +56,8 @@ const Form = () => {
   const navigate = useNavigate();
 
   const isNonMobileScreen = useMediaQuery("(min-width: 600px)");
-  const isLogin = pageType === "login";
-  const isRegister = pageType === "register";
+  const isLogin = (pageType === "login");
+  const isRegister = (pageType === "register");
 
   const login = async (values, onSubmitProps) => {
 
