@@ -82,7 +82,7 @@ const Form = () => {
           )
       }
       const {password, ...user} = loginUser.user
-      console.log(ini.user)
+      console.log(user)
       navigate("/home")
   }
 

@@ -9,7 +9,7 @@ import {
     FormControl,
     useTheme,
     useMediaQuery,
-    Icon
+
 } from "@mui/material";
 import {
     Search,
@@ -136,7 +136,7 @@ const Navbar = () => {
                     zIndex="10"
                     maxWidth="500px"
                     minWidth="300px"
-                    backgroundColor={alt}
+                    backgroundColor={background}
                 >
                     {/*Close Icon*/}
                     <Box
