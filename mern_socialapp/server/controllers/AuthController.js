@@ -50,7 +50,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try{
       const { email, password } = req.body
-      //Destructure register form
+      //Destructure login form
 
       const user = await UserModel.findOne({ email: email})
       //Find user based on email
@@ -67,10 +67,10 @@ export const login = async (req, res) => {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
       //Create session token w/ secret string
 
-      delete user.password
+      const {password, ...userObj} = user
       //Delete password before sending token to frontend for additional security
 
-      res.status(200).json({token, user})
+      res.status(200).json({token, userObj})
   }
   catch (err){
       res.status(500).json({ error: err.message })

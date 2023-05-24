@@ -82,6 +82,7 @@ export const updatePassword = async (req, res) =>{
     try{
         const {id} = req.params
         const {password, updatePassword} = req.body
+
         const user = await UserModel.findById(id)
 
         if(!user)
@@ -94,10 +95,9 @@ export const updatePassword = async (req, res) =>{
 
         const salt = await bcrypt.genSalt()
         const passwordHash = await bcrypt.hash(updatePassword, salt)
-
         const updatedPassword = {password: passwordHash}
 
-        await UserModel.findByIdAndUpdate(
+        const updatedUser = await UserModel.findByIdAndUpdate(
             id,
             updatedPassword,
             {new: true},
