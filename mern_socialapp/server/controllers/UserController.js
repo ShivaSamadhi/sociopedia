@@ -78,37 +78,37 @@ export const addRemoveFriend = async (req, res) => {
     }
 }
 
-export const updatePassword = async (req, res) =>{
-    try{
-        const {id} = req.params
-        const {password, updatePassword} = req.body
-
-        const user = await UserModel.findById(id)
-
-        if(!user)
-            return res.status(400).json({ msg: "User Does Not Exist"});
-
-        const isMatch = await bcrypt.compare(password, user.password)
-
-        if(!isMatch)
-            return res.status(400).json({ msg: "Invalid Credentials"})
-
-        const salt = await bcrypt.genSalt()
-        const passwordHash = await bcrypt.hash(updatePassword, salt)
-        const updatedPassword = {password: passwordHash}
-
-        const updatedUser = await UserModel.findByIdAndUpdate(
-            id,
-            updatedPassword,
-            {new: true},
-            (err, model) => {
-                if(err)
-                    console.log(err)
-                console.log(`Updated User: ${model}`)
-            }
-            )
-    }
-    catch (e) {
-
-    }
-}
+// export const updatePassword = async (req, res) =>{
+//     try{
+//         const {id} = req.params
+//         const {password, updatePassword} = req.body
+//
+//         const user = await UserModel.findById(id)
+//
+//         if(!user)
+//             return res.status(400).json({ msg: "User Does Not Exist"});
+//
+//         const isMatch = await bcrypt.compare(password, user.password)
+//
+//         if(!isMatch)
+//             return res.status(400).json({ msg: "Invalid Credentials"})
+//
+//         const salt = await bcrypt.genSalt()
+//         const passwordHash = await bcrypt.hash(updatePassword, salt)
+//         const updatedPassword = {password: passwordHash}
+//
+//         const updatedUser = await UserModel.findByIdAndUpdate(
+//             id,
+//             updatedPassword,
+//             {new: true},
+//             (err, model) => {
+//                 if(err)
+//                     console.log(err)
+//                 console.log(`Updated User: ${model}`)
+//             }
+//             )
+//     }
+//     catch (e) {
+//
+//     }
+// }

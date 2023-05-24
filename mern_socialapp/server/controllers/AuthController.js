@@ -67,10 +67,10 @@ export const login = async (req, res) => {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
       //Create session token w/ secret string
 
-      const {password, ...userObj} = user
+     delete user.password
       //Delete password before sending token to frontend for additional security
 
-      res.status(200).json({token, userObj})
+      res.status(200).json({token, user})
   }
   catch (err){
       res.status(500).json({ error: err.message })

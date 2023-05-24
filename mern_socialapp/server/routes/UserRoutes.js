@@ -12,6 +12,6 @@ router.get(`/:id/friends`, verifyToken, getUserFriends)
 //UPDATE ROUTES
 router.patch(`/:id/:friendId`, verifyToken, addRemoveFriend)
 
-router.patch(`/:id/password`, verifyToken, updatePassword)
+// router.patch(`/:id/password`, verifyToken, updatePassword)
 
 export default router
