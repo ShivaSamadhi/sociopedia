@@ -25,7 +25,35 @@ const UserWidget = ({userId, picturePath}) => {
 
     const dark = palette.neutral.dark
     const medium = palette.neutral.medium
-    const main
+    const main = palette.neutral.main
+
+    const getUser = async () =>{
+        const userRes = await fetch(`http://localhost:3795/users/${userId}`, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${token}`}
+        })
+        const userData = await userRes.json()
+        setUser(userData)
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
+    if(!user){
+        return null
+    }
+
+    const {
+        firstName,
+        lastName,
+        location,
+        occupation,
+        viewedProfile,
+        impressions,
+        friends
+    } = user
+
     return (
 
     )
