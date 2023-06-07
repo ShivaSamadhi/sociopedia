@@ -4,10 +4,10 @@ import UserModel from "../models/UserModel.js";
 //CREATE
 export const createPost = async (req, res) => {
     try {
-        const {userId, description, picturePath} = req.body
-        const user = await UserModel.findById(userId)
+        const {userID, description, picturePath} = req.body
+        const user = await UserModel.findById(userID)
         const newPost = new PostModel({
-            userId,
+            userID,
             firstName: user.firstName,
             lastName: user.lastName,
             location: user.location,
