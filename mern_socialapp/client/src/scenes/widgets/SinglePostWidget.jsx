@@ -42,7 +42,7 @@ comments,
     const primaryMain = palette.primary.main
 
     const patchLikes = async() => {
-        const patchLikesRes = await fetch(`http://localhost:3795/${postID}/likes`, {
+        const patchLikesRes = await fetch(`http://localhost:3795/posts/${postID}/likes`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -81,6 +81,7 @@ comments,
                 <FlexBetween
                     gap="1rem"
                 >
+                   {/*Likes Section*/}
                    <FlexBetween
                        gap=".3rem"
                    >
@@ -97,9 +98,40 @@ comments,
                            {likesCount}
                        </Typography>
                    </FlexBetween>
-                   <FlexBetween gap=".3rem"
+
+                   {/*Comments Section*/}
+                   <FlexBetween gap=".3rem">
+                       <IconButton
+                           onClick={() => setIsComments(!isComments)}
+                       >
+                           <ChatBubbleOutlineOutlined/>
+                       </IconButton>
+                       <Typography>
+                           {comments.length}
+                       </Typography>
+                   </FlexBetween>
                 </FlexBetween>
+
+                <IconButton>
+                    <ShareOutlined/>
+                </IconButton>
             </FlexBetween>
+
+            {isComments && (
+                <Box mt=".5rem">
+                    {comments.map((comment, i) =>(
+                        <Box
+                            key={`${name}-${i}`}
+                        >
+                            <Divider/>
+                            <Typography sx={{ color: main, m: ".5rem", pl: "1rem"}}>
+                                {comment}
+                            </Typography>
+                        </Box>
+                    ))}
+                    <Divider/>
+                </Box>
+            )}
         </WidgetWrapper>
     )
 }
