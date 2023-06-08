@@ -66,7 +66,7 @@ const Friend = ({friendID, name, subtitle, userPicturePath}) => {
                 </Box>
             </FlexBetween>
             <IconButton
-                onCLick={() => patchFriend()}
+                onClick={() => patchFriend()}
                 sx={{backgroundColor: primaryLight, p: ".6rem"}}
             >
                 {isFriend ? (<PersonRemoveOutlined sx={{color: primaryDark}}/>) : (<PersonAddOutlined sx={{color: primaryDark}}/>)}
