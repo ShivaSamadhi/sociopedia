@@ -7,10 +7,10 @@ const router = express.Router()
 
 //READ ROUTES
 router.get('/', verifyToken, getFeedPosts)
-router.get(`/:userId`, verifyToken, getUserPosts)
+router.get(`/:userID`, verifyToken, getUserPosts)
 
 //UPDATE ROUTES
-router.patch(`/:id/likes`, verifyToken, likePost)
+router.patch(`/:postID/likes`, verifyToken, likePost)
 
 //DELETE ROUTES
 

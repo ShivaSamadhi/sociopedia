@@ -42,11 +42,64 @@ comments,
     const primaryMain = palette.primary.main
 
     const patchLikes = async() => {
-        const patchLikesRes = await fetch(`http://localhost:3795/${postID}/likes`)
+        const patchLikesRes = await fetch(`http://localhost:3795/${postID}/likes`, {
+            method: "PATCH",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({userID: currentUserID})
+        })
+        const updatedPost = await patchLikesRes.json()
+        dispatch(setPost({post: updatedPost}))
     }
-    return (
-        <WidgetWrapper>
 
+    return (
+        <WidgetWrapper m="2rem 0">
+            <Friend
+               friendID={userID}
+               name={name}
+               subtitle={location}
+               userPicturePath={userPicturePath}
+            />
+            <Typography color={main} sx={{ mt: "1rem"}}>
+                {description}
+            </Typography>
+            {picturePath && (
+                <img
+                   width="100%"
+                   height="auto"
+                   alt="post"
+                   style={{
+                       borderRadius: ".75rem",
+                       marginTop: ".75rem"}}
+                   src={`http://localhost:3795/assets/${picturePath}`}/>
+            )}
+            <FlexBetween
+                mt=".25rem"
+            >
+                <FlexBetween
+                    gap="1rem"
+                >
+                   <FlexBetween
+                       gap=".3rem"
+                   >
+                       <IconButton
+                            onClick={() => patchLikes()}
+                       >
+                           {isLiked ? (
+                               <FavoriteOutlined sx={{ color: primaryMain}} />
+                           ) : (
+                               <FavoriteBorderOutlined/>
+                               )}
+                       </IconButton>
+                       <Typography>
+                           {likesCount}
+                       </Typography>
+                   </FlexBetween>
+                   <FlexBetween gap=".3rem"
+                </FlexBetween>
+            </FlexBetween>
         </WidgetWrapper>
     )
 }

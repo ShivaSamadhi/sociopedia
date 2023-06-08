@@ -41,8 +41,8 @@ export const getFeedPosts = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
     try{
-        const { userId } = req.params
-        const post = await PostModel.find({ userId })
+        const { userID } = req.params
+        const post = await PostModel.find({ userID })
         res.status(200).json(post)
     }
     catch (err) {
@@ -52,20 +52,20 @@ export const getUserPosts = async (req, res) => {
 
 export const likePost = async (req, res) => {
     try{
-        const { id } = req.params
-        const { userId } = req.body
-        const post = await PostModel.findById(id)
-        const isLiked = post.likes.get(userId)
+        const { postID } = req.params
+        const { userID } = req.body
+        const post = await PostModel.findById(postID)
+        const isLiked = post.likes.get(userID)
 
         if(isLiked){
-            post.likes.delete(userId)
+            post.likes.delete(userID)
         }
         else{
-            post.likes.set(userId, true)
+            post.likes.set(userID, true)
         }
 
         const updatedPost = await PostModel.findByIdAndUpdate(
-            id,
+            postID,
             {likes: post.likes},
             {new: true}
         )

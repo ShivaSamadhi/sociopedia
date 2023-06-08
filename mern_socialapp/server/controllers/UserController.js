@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 //READ
 export const getUser = async (req, res) => {
   try{
-      const {id} = req.params
-      const user = await UserModel.findById(id)
+      const {userID} = req.params
+      const user = await UserModel.findById(userID)
       res.status(200).json(user)
   }
   catch (err) {
@@ -15,9 +15,9 @@ export const getUser = async (req, res) => {
 
 export const getUserFriends = async (req, res) => {
     try{
-        const {id} = req.params
+        const {userID} = req.params
 
-        const user = await UserModel.findById(id)
+        const user = await UserModel.findById(userID)
 
         const friends = await Promise.all(
             user.friends.map((id) => UserModel.findById(id))
@@ -40,19 +40,19 @@ export const getUserFriends = async (req, res) => {
 //UPDATE
 export const addRemoveFriend = async (req, res) => {
     try{
-        const {id, friendId} = req.params
+        const {userID, friendID} = req.params
 
-        const user = await UserModel.findById(id)
-        const friend = await UserModel.findById(friendId)
+        const user = await UserModel.findById(userID)
+        const friend = await UserModel.findById(friendID)
 
-        if(user.friends.includes(friendId)){
-            user.friends = user.friends.filter((id) => id !== friendId)
-            friend.friends = friend.friends.filter((id) => id !== id)
+        if(user.friends.includes(friendID)){
+            user.friends = user.friends.filter((id) => id !== friendID)
+            friend.friends = friend.friends.filter((id) => id !== userID)
             //If friendId exists in user friends list, remove corresponding ID from each users friend arr with filter
         }
         else{
-            user.friends.push(friendId)
-            friend.friends.push(id)
+            user.friends.push(friendID)
+            friend.friends.push(userID)
             //If friendId does not exists in user friends list, add corresponding ID to each users friend arr with push
         }
 
