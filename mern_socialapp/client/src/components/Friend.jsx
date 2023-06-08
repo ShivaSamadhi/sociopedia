@@ -33,4 +33,44 @@ const Friend = ({friendID, name, subtitle, userPicturePath}) => {
         const patchFriendData = patchFriendRes.json()
         dispatch(setFriends({friends: patchFriendData}))
     }
+
+    return (
+        <FlexBetween>
+            <FlexBetween>
+                <UserImage image={userPicturePath} size="55px"/>
+                <Box
+                    onClick={() => {
+                        navigate(`/profile/${friendID}`)
+                        navigate(0)
+                    }}
+                >
+                    <Typography
+                        color={main}
+                        variant="h5"
+                        fontWeight="500"
+                        sx={{
+                            "&:hover":{
+                                color: palette.primary.light,
+                                cursor: "pointer"
+                            }
+                        }}
+                    >
+                        {name}
+                    </Typography>
+                    <Typography
+                        color={medium}
+                        fontSize=".75rem"
+                    >
+                        {subtitle}
+                    </Typography>
+                </Box>
+            </FlexBetween>
+            <IconButton
+                onCLick={() => patchFriend()}
+                sx={{backgroundColor: primaryLight, p: ".6rem"}}
+            >
+                {isFriend ? (<PersonRemoveOutlined sx={{color: primaryDark}}/>) : (<PersonAddOutlined sx={{color: primaryDark}}/>)}
+            </IconButton>
+        </FlexBetween>
+    )
 }
