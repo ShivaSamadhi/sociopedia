@@ -30,7 +30,7 @@ const Friend = ({friendID, name, subtitle, userPicturePath}) => {
                 "Content-Type": "application/json"
             }
         })
-        const patchFriendData = patchFriendRes.json()
+        const patchFriendData = await patchFriendRes.json()
         dispatch(setFriends({friends: patchFriendData}))
     }
 
@@ -69,7 +69,8 @@ const Friend = ({friendID, name, subtitle, userPicturePath}) => {
                 onClick={() => patchFriend()}
                 sx={{backgroundColor: primaryLight, p: ".6rem"}}
             >
-                {isFriend ? (<PersonRemoveOutlined sx={{color: primaryDark}}/>) : (<PersonAddOutlined sx={{color: primaryDark}}/>)}
+                <PersonAddOutlined sx={{color: primaryDark}}/>
+                {/*{isFriend ? (<PersonRemoveOutlined sx={{color: primaryDark}}/>) : (<PersonAddOutlined sx={{color: primaryDark}}/>)}*/}
             </IconButton>
         </FlexBetween>
     )

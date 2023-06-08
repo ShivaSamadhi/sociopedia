@@ -40,14 +40,14 @@ export const getUserFriends = async (req, res) => {
 //UPDATE
 export const addRemoveFriend = async (req, res) => {
     try{
-        const {userID, friendID} = req.params
+        const {id, friendID} = req.params
 
-        const user = await UserModel.findById(userID)
+        const user = await UserModel.findById(id)
         const friend = await UserModel.findById(friendID)
 
         if(user.friends.includes(friendID)){
             user.friends = user.friends.filter((id) => id !== friendID)
-            friend.friends = friend.friends.filter((id) => id !== userID)
+            friend.friends = friend.friends.filter((id) => id !== id)
             //If friendId exists in user friends list, remove corresponding ID from each users friend arr with filter
         }
         else{
