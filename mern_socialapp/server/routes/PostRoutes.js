@@ -10,7 +10,7 @@ router.get('/', verifyToken, getFeedPosts)
 router.get(`/:userId`, verifyToken, getUserPosts)
 
 //UPDATE ROUTES
-router.patch(`/:id/like`, verifyToken, likePost)
+router.patch(`/:id/likes`, verifyToken, likePost)
 
 //DELETE ROUTES
 

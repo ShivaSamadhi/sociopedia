@@ -74,3 +74,4 @@ const Friend = ({friendID, name, subtitle, userPicturePath}) => {
         </FlexBetween>
     )
 }
+export default Friend
