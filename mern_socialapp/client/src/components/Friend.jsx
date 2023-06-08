@@ -20,7 +20,7 @@ const Friend = ({friendID, name, subtitle, userPicturePath}) => {
     const main = palette.neutral.main
     const medium = palette.neutral.medium
 
-    const isFriend = friends.find((friend) => friend._id === friendID)
+    // const isFriend = friends.find((friend) => friend._id === friendID)
 
     const patchFriend = async() => {
         const patchFriendRes = await fetch(`http://localhost:3795/users/${_id}/${friendID}`, {
